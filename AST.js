@@ -30,6 +30,21 @@ class Variable extends Expression {
     }
 }
 
+class Integer extends Expression{
+    constructor(n){
+        super();
+        this.n = n;
+    }
+
+    toString(){
+        return this.n;
+    }
+
+    use(){
+        return new Set();
+    }
+}
+
 class Arith extends Expression {
     constructor(op, e1, e2) {
         super();
@@ -75,7 +90,33 @@ class DecVariable extends Statement {
     }
 
     label(){
-        return this.toString();
+        return this.toString()+"\ndef="+Array.from(this.def());
+    }
+}
+
+class Assign extends Statement {
+    constructor(name, init) {
+        super();
+        this.name = name;
+        this.init = init;
+    }
+
+    use() {
+        console.log(this.init);
+        // todo
+        return new Set();
+    }
+
+    def() {
+        return new Set([this.name]);
+    }
+
+    toString(){
+        return  this.name + " = " + this.init.toString();
+    }
+
+    label(){
+        return this.toString()+"\ndef="+Array.from(this.def()) + "\nuse=" + Array.from(this.use());
     }
 }
 
@@ -103,6 +144,7 @@ class IfElse extends Statement {
         }
         return useSet;
     }
+
     toString(){
         let str = "if (" + this.cond.toString() + ") {\n";
         for(const statement of this.thenBlock){
@@ -116,6 +158,10 @@ class IfElse extends Statement {
         }
         str += "}\n";
         return str;
+    }
+
+    label(){
+        return `if(${this.cond.toString()})`;
     }
 }
 

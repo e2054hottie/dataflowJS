@@ -1,0 +1,32 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+.input-area {
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical; /* 縦方向のリサイズを許可 */
+    font-family: monospace;
+    padding: 5px;
+    box-sizing: border-box; /* paddingをwidthに含める */
+}
+
+.button-area {
+    margin-bottom: 10px;
+}
+
+.output-area {
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow: auto; /* 長い出力に対応 */
+    min-height: 100px;
+}
+
+#error-message {
+    color: red;
+    margin-top: 10px;
+}
