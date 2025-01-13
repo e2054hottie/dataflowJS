@@ -21,7 +21,8 @@ while(a > b){
   }
 }
 `
-document.getElementById("program").value = defaultData;
+const programTextarea = document.getElementById("program")
+programTextarea.value = defaultData;
 
 function processProgram() {
   document.getElementById('graph').innerHTML = "";
@@ -53,3 +54,6 @@ function processProgram() {
       console.error(error);
     });
 }
+
+programTextarea.addEventListener('input', processProgram);
+processProgram();
